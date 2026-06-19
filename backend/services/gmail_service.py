@@ -197,12 +197,17 @@ def fetch_all_threads(gmail_service, user_id: str) -> list:
             userId="me", id=thread_id, format="full"
         ).execute()
 
-    # Collect all thread IDs first
     thread_ids = []
     while True:
         result = list_threads(page_token)
         threads = result.get("threads", [])
         thread_ids.extend([t["id"] for t in threads])
+        
+        # Stop early to avoid hitting Gmail rate limits (we only process 100 anyway)
+        if len(thread_ids) >= 100:
+            thread_ids = thread_ids[:100]
+            break
+            
         page_token = result.get("nextPageToken")
         if not page_token:
             break

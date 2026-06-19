@@ -13,7 +13,7 @@ from models.schemas import (
 router = APIRouter()
 
 
-@router.get("/")
+@router.get("")
 def list_threads(
     user_id: str = Query(..., description="User ID"),
     category: Optional[str] = Query(None, description="Filter by category"),

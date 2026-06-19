@@ -8,7 +8,7 @@ from models.schemas import CategoryStats, EmailListResponse, EmailResponse
 router = APIRouter()
 
 
-@router.get("/")
+@router.get("")
 def list_emails(
     user_id: str = Query(..., description="User ID"),
     category: Optional[str] = Query(None, description="Filter by category"),

@@ -10,7 +10,7 @@ load_dotenv()
 
 NVIDIA_API_KEY = os.getenv("NVIDIA_API_KEY", "")
 NVIDIA_BASE_URL = os.getenv("NVIDIA_BASE_URL", "https://integrate.api.nvidia.com/v1")
-NVIDIA_MODEL = "nvidia/llama-3.1-nemotron-nano-8b-instruct"
+NVIDIA_MODEL = "meta/llama-3.1-8b-instruct"
 
 
 def _nvidia_generate(prompt: str, max_tokens: int = 512, temperature: float = 0.7) -> str:

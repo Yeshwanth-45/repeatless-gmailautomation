@@ -16,8 +16,10 @@ def _run_sync_in_background(user_id: str, has_history_id: bool):
             sync_service.incremental_sync(user_id)
         else:
             sync_service.initial_sync(user_id)
-    except Exception:
-        pass
+    except Exception as e:
+        import traceback
+        print(f"BACKGROUND SYNC CRASHED FOR USER {user_id}: {str(e)}")
+        traceback.print_exc()
 
 
 @router.post("/{user_id}")
